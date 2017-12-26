@@ -9,18 +9,26 @@ import io.maphey.lock.zk.config.ConfigLoader;
 import io.maphey.lock.zk.config.ConfigMetaData;
 
 public class Curators {
-	private static final CuratorFramework CLIENT;
+	private static CuratorFramework client;
 
 	static {
-		ConfigMetaData configMeta = ConfigLoader.getConfigMetaData();
-		RetryPolicy retryPolicy = new ExponentialBackoffRetry(configMeta.getBaseSleep(), configMeta.getRetryCount());
-		CLIENT = CuratorFrameworkFactory.builder().connectString(configMeta.getZkServer()).connectionTimeoutMs(configMeta.getConnectionTimeout())
-				.sessionTimeoutMs(configMeta.getSessionTimeout()).retryPolicy(retryPolicy).namespace("appid").build();
-		CLIENT.start();
+		createClient();
 	}
 
 	public static CuratorFramework getClient() {
-		return CLIENT;
+		if (client != null) {
+			return client;
+		}
+		createClient();
+		return client;
 	}
 
+	private static synchronized void createClient() {
+		ConfigMetaData configMeta = ConfigLoader.getConfigMetaData();
+		RetryPolicy retryPolicy = new ExponentialBackoffRetry(configMeta.getBaseSleep(), configMeta.getRetryCount());
+		CuratorFramework tmpClient = CuratorFrameworkFactory.builder().connectString(configMeta.getZkServer()).connectionTimeoutMs(configMeta.getConnectionTimeout())
+				.sessionTimeoutMs(configMeta.getSessionTimeout()).retryPolicy(retryPolicy).namespace("appid").build();
+		tmpClient.start();
+		client = tmpClient;
+	}
 }

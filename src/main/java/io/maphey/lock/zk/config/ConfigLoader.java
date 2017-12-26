@@ -51,8 +51,8 @@ public class ConfigLoader {
 		CONFIG_META_DATA.setZkServer(zkServer);
 		CONFIG_META_DATA.setRetryCount(zkRetry);
 		CONFIG_META_DATA.setBaseSleep(baseSleep);
-		CONFIG_META_DATA.setConnectionTimeout(connectionTimeout);
 		CONFIG_META_DATA.setSessionTimeout(sessionTimeout);
+		CONFIG_META_DATA.setConnectionTimeout(connectionTimeout);
 	}
 
 	public static ConfigMetaData getConfigMetaData() {
