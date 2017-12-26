@@ -12,27 +12,27 @@ import org.apache.curator.framework.recipes.locks.InterProcessSemaphoreV2;
 import io.maphey.lock.zk.client.Curators;
 
 public class Locks {
-	public synchronized InterProcessMutex getInterProcessMutex(String path) {
+	public static synchronized InterProcessMutex getInterProcessMutex(String path) {
 		return new InterProcessMutex(Curators.getClient(), path);
 	}
 
-	public synchronized InterProcessSemaphoreMutex getInterProcessSemaphoreMutex(String path) {
+	public static synchronized InterProcessSemaphoreMutex getInterProcessSemaphoreMutex(String path) {
 		return new InterProcessSemaphoreMutex(Curators.getClient(), path);
 	}
 
-	public synchronized InterProcessReadWriteLock getInterProcessReadWriteLock(String path) {
+	public static synchronized InterProcessReadWriteLock getInterProcessReadWriteLock(String path) {
 		return new InterProcessReadWriteLock(Curators.getClient(), path);
 	}
 
-	public synchronized InterProcessSemaphoreV2 getInterProcessSemaphoreV2(String path, int numberOfLeases) {
+	public static synchronized InterProcessSemaphoreV2 getInterProcessSemaphoreV2(String path, int numberOfLeases) {
 		return new InterProcessSemaphoreV2(Curators.getClient(), path, numberOfLeases);
 	}
 
-	public synchronized InterProcessMultiLock getInterProcessMultiLock(List<String> paths) {
+	public static synchronized InterProcessMultiLock getInterProcessMultiLock(List<String> paths) {
 		return new InterProcessMultiLock(Curators.getClient(), paths);
 	}
 
-	public synchronized DistributedBarrier getDistributedBarrier(String barrierPath) {
+	public static synchronized DistributedBarrier getDistributedBarrier(String barrierPath) {
 		return new DistributedBarrier(Curators.getClient(), barrierPath);
 	}
 }

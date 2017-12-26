@@ -27,7 +27,7 @@ public class Curators {
 		ConfigMetaData configMeta = ConfigLoader.getConfigMetaData();
 		RetryPolicy retryPolicy = new ExponentialBackoffRetry(configMeta.getBaseSleep(), configMeta.getRetryCount());
 		CuratorFramework tmpClient = CuratorFrameworkFactory.builder().connectString(configMeta.getZkServer()).connectionTimeoutMs(configMeta.getConnectionTimeout())
-				.sessionTimeoutMs(configMeta.getSessionTimeout()).retryPolicy(retryPolicy).namespace("appid").build();
+				.sessionTimeoutMs(configMeta.getSessionTimeout()).retryPolicy(retryPolicy).namespace("test").build();
 		tmpClient.start();
 		client = tmpClient;
 	}
