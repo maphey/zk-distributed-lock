@@ -6,7 +6,7 @@ public class ZkLockNamespaceHandler extends NamespaceHandlerSupport {
 
 	@Override
 	public void init() {
-		registerBeanDefinitionParser("config", new ZkLockBeanDefinitionParser());
+		registerBeanDefinitionParser("annotation-config", new ZkLockBeanDefinitionParser());
 	}
 
 }

@@ -6,9 +6,10 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
-        http://maphey.github.io/zk-distributed-lock/zk-distributed-lock.xsd">
+        http://maphey.github.io/zk-distributed-lock
+		http://maphey.github.io/zk-distributed-lock/zk-distributed-lock.xsd">
 
-	<context:annotation-config></context:annotation-config>
 	<context:component-scan base-package="io.maphey.lock.zks"></context:component-scan>
+	<context:annotation-config></context:annotation-config>
 	<dlock:annotation-config></dlock:annotation-config>
 </beans>
